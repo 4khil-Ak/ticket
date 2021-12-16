@@ -1,0 +1,154 @@
+.login-sect {
+  background-image: url("../Assests/login.jpg");
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+}
+.signup-form {
+  width: 100%;
+  max-width: 540px;
+  padding: 60px 45px;
+  margin: 0 auto;
+  background-color: rgba(68, 90, 153, 0.051);
+  -webkit-box-shadow: 0px 0px 29.4px 0.6px rgba(0, 0, 0, 0.5);
+  box-shadow: 0px 0px 29.4px 0.6px rgba(0, 0, 0, 0.5);
+}
+.signup-form .header {
+  text-align: center;
+  margin-bottom: 37px;
+}
+.signup-form .header h2 {
+  color: #31d7a9;
+  text-transform: uppercase;
+  display: block;
+  font-size: 18px;
+  font-weight: initial;
+  margin-bottom: 10px;
+  margin-top: -8px;
+}
+.signup-form .header p {
+  text-transform: uppercase;
+  color: #fff;
+  font-weight: 700;
+  margin-bottom: 0;
+}
+.signup-form .form-group {
+  margin-bottom: 22px;
+}
+.signup-form .form-group label {
+  margin-bottom: 10px;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.7);
+  cursor: pointer;
+}
+.signup-form .form-group label span {
+  color: #f1481f;
+}
+.signup-form .form-group.checkgroup label a {
+  color: #31d7a9;
+}
+.signup-form .form-group input {
+  height: 45px;
+  width: 100%;
+  color: #dbe2fb;
+  background: transparent;
+  border-radius: 0;
+  border: none;
+  outline: 0;
+  border-bottom: 1px solid #23334f;
+  padding-left: 0;
+}
+.signup-form .form-group input:focus {
+  border-color: #f1481f;
+}
+.signup-form .form-group.checkgroup {
+  display: flex;
+  flex-wrap: wrap;
+  -webkit-transform: translateY(-10px);
+  transform: translateY(-10px);
+}
+.signup-form .checkgroup input {
+  width: 16px;
+  height: 0px;
+  border-radius: 50%;
+  position: relative;
+  cursor: pointer;
+}
+.signup-form .checkgroup input::after {
+  position: absolute;
+  content: "";
+  bottom: -21px;
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  background: #3d34c3;
+  color: #ffffff;
+  font-weight: 600;
+  font-family: "Font Awesome 5 Free";
+  font-size: 8px;
+  line-height: 16px;
+  text-align: center;
+}
+.signup-form .checkgroup input:checked::after {
+  content: "\f00c";
+}
+.signup-form .form-group.checkgroup label {
+  color: #6d7bba;
+  font-size: 14px;
+  max-width: calc(100% - 15px);
+  padding-left: 5px;
+  margin-bottom: 0;
+  margin-right: auto;
+  text-transform: capitalize;
+}
+.signup-form .form-group.checkgroup .forget-pass {
+  display: inline-block;
+  color: #6d7bba;
+  text-transform: capitalize;
+  font-size: 14px;
+  text-decoration: none;
+}
+.signup-form .form-group button[type="submit"] {
+  background-image: -webkit-linear-gradient(
+    169deg,
+    #5560ff 17%,
+    #aa52a1 63%,
+    #ff4343 100%
+  );
+  color: #fff;
+  -webkit-transition: all ease 0.3s;
+  transition: all ease 0.3s;
+  border-radius: 30px;
+  width: auto;
+  padding: 0 50px;
+  height: 50px;
+  text-transform: uppercase;
+  margin: 0 auto;
+  border: none;
+  outline: 0;
+  letter-spacing: 1px;
+}
+.signup-form .form-group button[type="submit"]:hover {
+  -webkit-box-shadow: 0px 10px 15px 0px rgba(59, 55, 188, 0.5);
+  box-shadow: 0px 10px 15px 0px rgba(59, 55, 188, 0.5);
+}
+.signup-form .option {
+  text-align: center;
+  /* margin-bottom: 28px; */
+}
+.signup-form .option a {
+  color: #31d7a9;
+  text-decoration: none;
+}
+@media only screen and (min-width: 576px) {
+  .signup-form .header {
+    margin-bottom: 27px;
+  }
+  .signup-form .header h2 {
+    font-size: 24px;
+    margin-top: -6px;
+  }
+  .signup-form .header p {
+    font-size: 40px;
+  }
+}
