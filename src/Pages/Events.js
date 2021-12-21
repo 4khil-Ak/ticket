@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "../Css/User.css";
+import { eventData } from "../Json/Events";
 import Navbar from "../Components/Navbar/Navbar";
 import Banner from "../Components/Events/Banner";
 import Search from "../Components/Events/Search";
@@ -12,7 +13,7 @@ const Events = () => {
       <Navbar />
       <Banner />
       <Search />
-      <Browse />
+      <Browse eventData={eventData} />
       <Footer />
     </>
   );

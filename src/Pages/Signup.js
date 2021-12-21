@@ -59,12 +59,11 @@ const Signup = (props) => {
         headers: {
         'Accept': 'application/json',
         'Content-Type': 'application/json',
-        withCredentials: false
       }
     }).then(res => {
       // console.log(res.userDetails);
       navigate("/login")
-      console.log("success").catch
+      console.log("success")
     }).catch(axioserror=> {
       if(axioserror.response.data.errors.email) {
         setError(axioserror.response.data.errors.email)

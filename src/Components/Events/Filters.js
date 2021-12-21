@@ -1,6 +1,7 @@
 import React from "react";
 
-const Filters = () => {
+const Filters = (props) => {
+
   return (
     <div className="filter-section">
       <div className="row header">
@@ -42,14 +43,14 @@ const Filters = () => {
           </div>
         </div>
       </details>
-      <details className="filter">
+      <details className="filter">  
         <summary>
           <h6 className="subtitle">categories</h6>
         </summary>
         <div className="checkbox pt-3 px-2">
           <div className="row">
-            <input type="checkbox" id="name" />
-            <label htmlFor="name">Performance</label>
+            <input type="checkbox" id="performance" />
+            <label htmlFor="performance">Performance</label>
           </div>
           <div className="row">
             <input type="checkbox" id="show" />
@@ -66,6 +67,26 @@ const Filters = () => {
           <div className="row">
             <input type="checkbox" id="online" />
             <label htmlFor="online">Online Streaming</label>
+          </div>
+          <div className="row">
+            <input type="checkbox" id="workshops" />
+            <label htmlFor="workshops">Workshops</label>
+          </div>
+          <div className="row">
+            <input type="checkbox" id="spirtuality" />
+            <label htmlFor="spirtuality">Spirtuality</label>
+          </div>
+          <div className="row">
+            <input type="checkbox" id="screening" />
+            <label htmlFor="screening">Screening</label>
+          </div>
+          <div className="row">
+            <input type="checkbox" id="outdoor" />
+            <label htmlFor="outdoor">Outdoor Events</label>
+          </div>
+          <div className="row">
+            <input type="checkbox" id="kidsallowed" />
+            <label htmlFor="kidsallowed">Kids Allowed</label>
           </div>
         </div>
       </details>

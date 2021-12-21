@@ -2,7 +2,8 @@ import React from "react";
 import Grid from "./Grid";
 import Filters from "./Filters";
 
-const Browse = () => {
+const Browse = (props) => {
+  let arr = props.eventData;
   return (
     <section className="events-section padding-top padding-bottom">
       <div className="row">
@@ -10,7 +11,7 @@ const Browse = () => {
           <Filters />
         </div>
         <div className="col-md-9 col-lg-9 px-1 py-3">
-          <Grid />
+          <Grid eventsList={arr} />
         </div>
       </div>
     </section>

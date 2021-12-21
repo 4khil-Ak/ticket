@@ -21,14 +21,6 @@ const Search = () => {
               </ul>
             </div>
           </div>
-          <div className="search-area">
-            <div className="form-group large">
-              <input type="text" placeholder="Search for Movies , Events" />
-              <button type="submit">
-                <i className="fas fa-search"></i>
-              </button>
-            </div>
-          </div>
         </div>
       </div>
     </section>

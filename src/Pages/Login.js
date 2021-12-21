@@ -1,9 +1,11 @@
 import React, { useState } from "react";
+import Axios from "axios";
 import { Link } from "react-router-dom";
 import "../Css/Login.css";
 import { Alert } from "react-bootstrap";
 
 const Login = () => {
+  const url = "https://apidev.ticketezy.com/users/login";
   const [error, setError] = useState();
   const [userDetails, setUserDetails] = useState({
     email: "",
@@ -32,64 +34,78 @@ const Login = () => {
     } else if (atPos > dotPos || nextAtPos !== -1 || nextDotPos !== -1) {
       setError("Enter valid email !")
     } else {
-      console.log("success")
+      Axios.post(url, {
+        "email": userDetails.email,
+        "password": userDetails.password,
+      }, {
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json',
+        }
+      }).then(res => {
+        // console.log(res.userDetails);
+        navigate("/")
+        console.log("success")
+      }).catch(axioserror => {
+        console.log(axioserror)
+      })
     }
   }
 
   return (
     <section className="login-sect">
-    <div className="container">
-      <div className="padding-top padding-bottom">
-        <div className="signup-form">
-          <div className="header">
-            <h2>Hello</h2>
-            <p>Welcome Back</p>
-          </div>
-          <form class="account-form" onSubmit={loginHandler}>
-            <div class="form-group">
-              <label htmlFor="email">
-                Email<span>*</span>
-              </label>
-              <input
-                type="text"
-                placeholder="Enter Your Email"
-                id="email"
-                required=""
-                onChange={onChangeHandler}
-                value = {userDetails.name}
-              />
+      <div className="container">
+        <div className="padding-top padding-bottom">
+          <div className="signup-form">
+            <div className="header">
+              <h2>Hello</h2>
+              <p>Welcome Back</p>
             </div>
-            <div class="form-group">
-              <label htmlFor="password">
-                Password<span>*</span>
-              </label>
-              <input
-                type="password"
-                placeholder="Password"
-                id="password"
-                required=""
-                onChange={onChangeHandler}
-                value= {userDetails.password}
-              />
+            <form class="account-form" onSubmit={loginHandler}>
+              <div class="form-group">
+                <label htmlFor="email">
+                  Email<span>*</span>
+                </label>
+                <input
+                  type="text"
+                  placeholder="Enter Your Email"
+                  id="email"
+                  required=""
+                  onChange={onChangeHandler}
+                  value={userDetails.name}
+                />
+              </div>
+              <div class="form-group">
+                <label htmlFor="password">
+                  Password<span>*</span>
+                </label>
+                <input
+                  type="password"
+                  placeholder="Password"
+                  id="password"
+                  required=""
+                  onChange={onChangeHandler}
+                  value={userDetails.password}
+                />
+              </div>
+              <div class="form-group checkgroup">
+                <input type="checkbox" id="remember" />
+                <label for="remember">remember password</label>
+                <a href="#0" class="forget-pass">
+                  Forget Password
+                </a>
+              </div>
+              {error && <Alert variant="danger">{error}</Alert>}
+              <div class="form-group text-center">
+                <button type="submit">Log In</button>
+              </div>
+            </form>
+            <div class="option">
+              Don't have an account? <Link to={`/signup`}>Sign up now</Link>
             </div>
-            <div class="form-group checkgroup">
-              <input type="checkbox" id="remember" />
-              <label for="remember">remember password</label>
-              <a href="#0" class="forget-pass">
-                Forget Password
-              </a>
-            </div>
-            {error && <Alert variant="danger">{error}</Alert>}
-            <div class="form-group text-center">
-            <button type="submit">Log In</button>
-            </div>
-          </form>
-          <div class="option">
-            Don't have an account? <Link to={`/signup`}>Sign up now</Link>
           </div>
         </div>
       </div>
-    </div>
     </section>
   );
 };

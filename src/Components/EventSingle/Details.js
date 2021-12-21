@@ -1,6 +1,6 @@
 import React from "react";
 
-const Details = () => {
+const Details = (props) => {
     return (
         <section className="details padding-top pt-lg-0">
             <div className="container">
