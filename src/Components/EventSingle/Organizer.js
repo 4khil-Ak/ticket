@@ -28,15 +28,15 @@ const options = {
 
 const Organizer = () => {
     return (
-        <section class="speaker-section padding-bottom padding-top">
-            <div class="container">
-                <div class="about-content">
-                    <span class="cate">listen to the</span>
-                    <h2 class="title">event speakers</h2>
+        <section className="speaker-section padding-bottom padding-top">
+            <div className="container">
+                <div className="about-content">
+                    <span className="cate">listen to the</span>
+                    <h2 className="title">event speakers</h2>
                     <p>World is committed to making participation in the event a harassment free experience for
                         everyone, regardless of level of experience, gender, gender identity and expression</p>
                 </div>
-                <div class="speaker-slider">
+                <div className="speaker-slider">
                     <OwlCarousel className="owl-theme owl-carousel" {...options}>
                         <Speaker />
                         <Speaker />

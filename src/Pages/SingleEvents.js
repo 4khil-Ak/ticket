@@ -13,22 +13,26 @@ let eventId = "";
 const SingleEvent = (value) => {
     const [singleEventDetails, setSingleEventDetails] = useState(null);
     const location = useLocation();
-    useEffect(()=>{
+    useEffect(() => {
         const list = location.state.data;
         setSingleEventDetails(list);
-    },[])
+    }, [])
     console.log(singleEventDetails);
-
-    return (
-        <>
+    let ui = null;
+    if (singleEventDetails !== null) {
+        ui = (<>
             <Navbar />
             <Banner />
             <Details details={singleEventDetails} />
-            <AboutEvent />
-            <Gallery />
-            <Organizer />
+            <AboutEvent details={singleEventDetails} />
+            <Gallery details={singleEventDetails} />
+            <Organizer details={singleEventDetails} />
             <Footer />
         </>
+        )
+    }
+    return (
+        ui
     )
 }
 

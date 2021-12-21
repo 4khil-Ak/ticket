@@ -5,30 +5,31 @@ const Details = (props) => {
         <section className="details padding-top pt-lg-0">
             <div className="container">
                 <div className="bg-img">
-                    <div class="row">
-                        <div class="left">
-                            <h3 class="title">Digital Marketing Conference -2020</h3>
+                    return (
+                    <div className="row">
+                        <div className="left">
+                            <h3 className="title">{props.details.title}</h3>
                         </div>
-                        <div class="right">
-                            <ul class="countdown">
+                        <div className="right">
+                            <ul className="countdown">
                                 <li>
-                                    <h2><span class="days">302</span></h2>
-                                    <p class="days_text">Days</p>
+                                    <h2><span className="days">302</span></h2>
+                                    <p className="days_text">Days</p>
                                 </li>
                                 <li>
-                                    <h2><span class="hours">20</span></h2>
-                                    <p class="hours_text">Hours</p>
+                                    <h2><span className="hours">20</span></h2>
+                                    <p className="hours_text">Hours</p>
                                 </li>
                                 <li>
-                                    <h2><span class="minutes">45</span></h2>
-                                    <p class="minu_text">min</p>
+                                    <h2><span className="minutes">45</span></h2>
+                                    <p className="minu_text">min</p>
                                 </li>
                                 <li>
-                                    <h2><span class="seconds">16</span></h2>
-                                    <p class="seco_text">sec</p>
+                                    <h2><span className="seconds">16</span></h2>
+                                    <p className="seco_text">sec</p>
                                 </li>
                             </ul>
-                            <a href="#0" class="custom-button">book tickets</a>
+                            <a href="#0" className="custom-button">book tickets</a>
                         </div>
                     </div>
                 </div>

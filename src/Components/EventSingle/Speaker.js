@@ -2,12 +2,12 @@ import React from "react";
 
 const Speaker = () => {
     return (
-        <div class="speaker-item">
-            <div class="speaker-thumb">
+        <div className="speaker-item">
+            <div className="speaker-thumb">
                 <img src="/images/speaker.jpg" alt="speaker" />
             </div>
-            <div class="speaker-content">
-                <h5 class="title">
+            <div className="speaker-content">
+                <h5 className="title">
                     Grass Hopper
                 </h5>
                 <span>lead speaker</span>
