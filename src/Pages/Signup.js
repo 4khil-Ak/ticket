@@ -26,7 +26,6 @@ const Signup = (props) => {
       }
     })
   }
-  // console.log(userDetails);
 
   const creatUserHandler = (event) => {
     event.preventDefault();
@@ -61,15 +60,14 @@ const Signup = (props) => {
         'Content-Type': 'application/json',
       }
     }).then(res => {
-      // console.log(res.userDetails);
       navigate("/login")
       console.log("success")
     }).catch(axioserror=> {
-      if(axioserror.response.data.errors.email) {
-        setError(axioserror.response.data.errors.email)
-      } else if (axioserror.response.data.errors.mobile) {
+      if(axioserror.response.data.errors.email !== null && axioserror.response.data.errors.email) {
+        setError(axioserror.response.data.errors.email) 
+      } else if (axioserror.response.data.errors.mobile !== null && axioserror.response.data.errors.mobile) {
         setError(axioserror.response.data.errors.mobile)
-      } else if (axioserror.response.data.errors.password) {
+      } else if (axioserror.response.data.errors.password !== null && axioserror.response.data.errors.password) {
         setError(axioserror.response.data.errors.password)
       }
     })

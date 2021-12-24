@@ -1,10 +1,11 @@
 import React, { useState } from "react";
 import Axios from "axios";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "../Css/Login.css";
 import { Alert } from "react-bootstrap";
 
 const Login = () => {
+  let navigate = useNavigate();
   const url = "https://apidev.ticketezy.com/users/login";
   const [error, setError] = useState();
   const [userDetails, setUserDetails] = useState({
@@ -21,7 +22,6 @@ const Login = () => {
       }
     })
   }
-  console.log(userDetails);
 
   const loginHandler = (event) => {
     event.preventDefault();
@@ -43,12 +43,11 @@ const Login = () => {
           'Content-Type': 'application/json',
         }
       }).then(res => {
-        // const item = 
+        console.log(res);
+        let email = userDetails.email;
         navigate("/")
-        // localStorage.setItem(key, JSON.stringify(item))
-        console.log("success")
+        localStorage.setItem("userId", email);
       }).catch(axioserror => {
-        console.log(axioserror)
       })
     }
   }
@@ -62,8 +61,8 @@ const Login = () => {
               <h2>Hello</h2>
               <p>Welcome Back</p>
             </div>
-            <form class="account-form" onSubmit={loginHandler}>
-              <div class="form-group">
+            <form className="account-form" onSubmit={loginHandler}>
+              <div className="form-group">
                 <label htmlFor="email">
                   Email<span>*</span>
                 </label>
@@ -76,7 +75,7 @@ const Login = () => {
                   value={userDetails.name}
                 />
               </div>
-              <div class="form-group">
+              <div className="form-group">
                 <label htmlFor="password">
                   Password<span>*</span>
                 </label>
@@ -89,19 +88,19 @@ const Login = () => {
                   value={userDetails.password}
                 />
               </div>
-              <div class="form-group checkgroup">
+              {/* <div className="form-group checkgroup">
                 <input type="checkbox" id="remember" />
-                <label for="remember">remember password</label>
-                <a href="#0" class="forget-pass">
+                <label htmlFor="remember">remember password</label>
+                <a href="#0" className="forget-pass">
                   Forget Password
                 </a>
-              </div>
+              </div> */}
               {error && <Alert variant="danger">{error}</Alert>}
-              <div class="form-group text-center">
+              <div className="form-group text-center">
                 <button type="submit">Log In</button>
               </div>
             </form>
-            <div class="option">
+            <div className="option">
               Don't have an account? <Link to={`/signup`}>Sign up now</Link>
             </div>
           </div>
