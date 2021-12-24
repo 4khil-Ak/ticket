@@ -43,8 +43,9 @@ const Login = () => {
           'Content-Type': 'application/json',
         }
       }).then(res => {
-        // console.log(res.userDetails);
+        // const item = 
         navigate("/")
+        // localStorage.setItem(key, JSON.stringify(item))
         console.log("success")
       }).catch(axioserror => {
         console.log(axioserror)

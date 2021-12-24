@@ -27,16 +27,12 @@ const options = {
   }
 };
 
-const Owl = () => {
+const Owl = (props) => {
+  let arr = props.filter;
   return (
+
     <OwlCarousel className="owl-theme owl-carousel" {...options}>
-      <Card />
-      <Card />
-      <Card />
-      <Card />
-      <Card />
-      <Card />
-      <Card />
+      <Card eventsList={arr} />
     </OwlCarousel>
   );
 };

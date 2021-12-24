@@ -34,5 +34,18 @@ export const eventData = [
         "location": "https://123.com",
         "time": "2021",
         "secret": "e16d829a5ca4742340c423708269c335"
+    },
+    {
+        "title": "2500 Stanup comedy by Jack Dhamu",
+        "description": "This is a comedy show",
+        "categories": "Kids",
+        "language": "Hindi",
+        "duration": 123,
+        "adult_content": true,
+        "venue": "Karur",
+        "location": "https://123.com",
+        "time": "2021",
+        "secret": "e16d829a5ca4742340c423704569c335",
+        "price": "2500"
     }
 ]

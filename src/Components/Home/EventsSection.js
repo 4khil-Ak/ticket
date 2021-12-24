@@ -2,13 +2,15 @@ import React from "react";
 import Owl from "./Owl";
 import $ from "jquery";
 
-const EventsSection = () => {
+const EventsSection = (props) => { 
+  const eventData = props.filter
   $(document).ready(function () {
     $("#option1 li").click(function () {
       $("#option1 li.active").removeClass("active");
       $(this).addClass("active");
     });
   });
+
   return (
     <section className="movie-section events-section padding-top padding-bottom">
       <div className="container">
@@ -25,7 +27,7 @@ const EventsSection = () => {
             </ul>
           </div>
         </div>
-        <Owl />
+        <Owl filter={eventData}/>
       </div>
     </section>
   );

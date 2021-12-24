@@ -1,5 +1,5 @@
-import React, { useContext, useState, useEffect } from "react";
-import { useLocation, useParams } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { useLocation } from "react-router-dom";
 import { eventData } from "../Json/Events";
 import Navbar from "../Components/Navbar/Navbar";
 import Banner from "../Components/EventSingle/Banner";
@@ -9,15 +9,13 @@ import Gallery from "../Components/EventSingle/Gallery";
 import Organizer from "../Components/EventSingle/Organizer";
 import Footer from "../Components/Footer/Footer";
 
-let eventId = "";
-const SingleEvent = (value) => {
+const SingleEvent = (props) => {
     const [singleEventDetails, setSingleEventDetails] = useState(null);
     const location = useLocation();
     useEffect(() => {
         const list = location.state.data;
         setSingleEventDetails(list);
     }, [])
-    console.log(singleEventDetails);
     let ui = null;
     if (singleEventDetails !== null) {
         ui = (<>

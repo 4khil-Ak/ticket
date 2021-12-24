@@ -8,10 +8,9 @@ const Grid = (props) => {
     list.push(...props.eventsList);
     setEvents(list);
   }, []);
-
   return (
     <div className="row">
-      {events !== null && events.map((data) => {
+      {props.eventsList!== null && props.eventsList.map((data) => {
         return (
           <div className="mobile-responsive col-6 col-sm-4 col-xl-3 pb-4" key={data.secret} >
             <Card data={data} />

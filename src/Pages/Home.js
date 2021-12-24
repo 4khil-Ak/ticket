@@ -5,14 +5,14 @@ import Banner from "../Components/Home/Banner";
 import Search from "../Components/Home/Search";
 import EventsSection from "../Components/Home/EventsSection";
 import Footer from "../Components/Footer/Footer";
-
+import { eventData } from "../Json/Events";
 const Home = () => {
   return (
     <>
       <Navbar />
       <Banner />
       <Search />
-      <EventsSection />
+      <EventsSection filter={eventData}/>
       <Footer />
     </>
   );
