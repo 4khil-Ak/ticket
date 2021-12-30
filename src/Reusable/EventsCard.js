@@ -13,7 +13,7 @@ const EventsCard = (props) => {
       {props.eventsList !== null && props.eventsList.map((data) => {
         return (
           <div className="card" key={data.secret}>
-            <div onClick={() => eventsUpdate(props.data)} className="stretched-link"></div>
+            <div onClick={() => eventsUpdate(data)} className="stretched-link"></div>
             <div className="event-date">
               <h6>24</h6>
               <p>Dec</p>

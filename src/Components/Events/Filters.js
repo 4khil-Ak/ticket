@@ -1,25 +1,25 @@
 import React, { useState, useEffect } from "react";
 
 const Languages = [
-  { Language: "Tamil", id: "Tamil" },
-  { Language: "English", id: "English" },
-  { Language: "Hindi", id: "Hindi" },
-  { Language: "Malayalam,", id: "Malayalam" },
-  { Language: "Telugu", id: "Telugu" },
-  { Language: "Kannada", id: "Kannada" },
-  { Language: "Bengali", id: "Bengali" },
+  { Language: "Tamil", id: "tamil" },
+  { Language: "English", id: "english" },
+  { Language: "Hindi", id: "hindi" },
+  { Language: "Malayalam,", id: "malayalam" },
+  { Language: "Telugu", id: "telugu" },
+  { Language: "Kannada", id: "kannada" },
+  { Language: "Bengali", id: "bengali" },
 ];
 const categories = [
-  { category: "performance", id: "performance" },
-  { category: "Music Show", id: "Music_Show" },
-  { category: "Kids", id: "Kids" },
-  { category: "Comedy", id: "Comedy" },
-  { category: "Online Streaming", id: "Online Streaming" },
-  { category: "Workshops", id: "Workshops" },
-  { category: "Spirtuality", id: "Spirtuality" },
-  { category: "Screening", id: "Screening" },
-  { category: "Outdoor Events", id: "Outdoor_Events" },
-  { category: "Kids Allowed", id: "Kids_Allowed" },
+  { category: "Performance", id: "performance" },
+  { category: "Music Show", id: "music_show" },
+  { category: "Kids", id: "kids" },
+  { category: "Comedy", id: "comedy" },
+  { category: "Online Streaming", id: "online_streaming" },
+  { category: "Workshops", id: "workshops" },
+  { category: "Spirtuality", id: "spirtuality" },
+  { category: "Screening", id: "screening" },
+  { category: "Outdoor Events", id: "outdoor_events" },
+  { category: "Kids Allowed", id: "kids_allowed" },
 ];
 const prices = [
   { price: "free", id: "free",start:"free"},

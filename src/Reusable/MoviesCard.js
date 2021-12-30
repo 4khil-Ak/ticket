@@ -13,7 +13,7 @@ const MoviesCard = (props) => {
             {props.eventsList !== null && props.eventsList.map((data) => {
                 return (
                     <div className="card" key={data.secret}>
-                        <div onClick={() => moviesUpdate(props.data)} className="stretched-link"></div>
+                        <div onClick={() => moviesUpdate(data)} className="stretched-link"></div>
                         <div className="movie-image">
                             <img
                                 className="img-fluid"
