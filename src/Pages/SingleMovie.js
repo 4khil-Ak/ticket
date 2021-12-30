@@ -6,7 +6,7 @@ import AboutEvent from "../Components/EventSingle/AboutEvent";
 import Gallery from "../Components/EventSingle/Gallery";
 import Organizer from "../Components/EventSingle/Organizer";
 
-const SingleEvent = (props) => {
+const SingleMovie = (props) => {
     const [singleEventDetails, setSingleEventDetails] = useState(null);
     const location = useLocation();
     useEffect(() => {
@@ -29,4 +29,4 @@ const SingleEvent = (props) => {
     )
 }
 
-export default SingleEvent;
+export default SingleMovie;

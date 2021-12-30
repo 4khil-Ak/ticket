@@ -1,7 +1,7 @@
 import React from "react";
 import OwlCarousel from "react-owl-carousel";
 import "owl.carousel/dist/assets/owl.carousel.css";
-import Card from "../../Reusable/Card";
+import MoviesCard from "../../Reusable/MoviesCard";
 
 const options = {
   loop: true,
@@ -15,7 +15,7 @@ const options = {
     0: {
       items: 1
     },
-    350: {
+    450: {
       items: 2
     },
     750: {
@@ -27,14 +27,14 @@ const options = {
   }
 };
 
-const Owl = (props) => {
+const MoviesOwl = (props) => {
   let arr = props.filter;
   return (
 
     <OwlCarousel className="owl-theme owl-carousel" {...options}>
-      <Card eventsList={arr} />
+      <MoviesCard eventsList={arr} />
     </OwlCarousel>
   );
 };
 
-export default Owl;
+export default MoviesOwl;

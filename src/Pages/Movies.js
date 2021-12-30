@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from "react";
 import "../Css/User.css";
 import { eventData } from "../Json/Events";
-import Banner from "../Components/Events/Banner";
-import Search from "../Components/Events/Search";
-import Browse from "../Components/Events/Browse";
+import Banner from "../Components/Movies/Banner";
+import Search from "../Components/Movies/Search";
+import Browse from "../Components/Movies/Browse";
 
-const Events = () => {
+const Movies = () => {
   const [filter, setfilter] = useState([]);
 
   const handlefilters = (post) => {
@@ -31,4 +31,4 @@ const Events = () => {
   );
 };
 
-export default Events;
+export default Movies;

@@ -1,12 +1,19 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 
-const Card = (props) => {
+const EventsCard = (props) => {
+  let navigate = useNavigate();
+    const eventsUpdate = (data) => {
+        navigate(
+            "/eventdetails", {state : {data}}
+        );
+    };
   return (
     <>
       {props.eventsList !== null && props.eventsList.map((data) => {
         return (
           <div className="card" key={data.secret}>
-
+            <div onClick={() => eventsUpdate(props.data)} className="stretched-link"></div>
             <div className="event-date">
               <h6>24</h6>
               <p>Dec</p>
@@ -43,4 +50,4 @@ const Card = (props) => {
   );
 };
 
-export default Card;
+export default EventsCard;

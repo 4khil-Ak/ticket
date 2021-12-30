@@ -1,19 +1,30 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
-const Card = () => {
+const Card = (props) => {
+    let navigate = useNavigate();
+    const moviesUpdate = (data) => {
+        navigate(
+            "/moviedetails", {state : {data}}
+        );
+    };
+
     return (
         <div className="card">
-            <Link to="/eventdetails" className="stretched-link"></Link>
+            <div onClick={() => moviesUpdate(props.data)} className="stretched-link"></div>
+            <div className="event-date">
+                <h6>24</h6>
+                <p>Dec</p>
+            </div>
             <div className="movie-image">
                 <img
                     className="img-fluid"
-                    src="/images/moviebanner.jpg"
-                    alt="movie name"
+                    src="/images/eventbanner.jpg"
+                    alt="event name"
                 />
             </div>
             <div className="movie-content">
-                <h5 className="title m-0">mars</h5>
+                <h5 className="title m-0">{props.data.title}</h5>
                 <ul className="movie-rating">
                     <li>
                         <div className="thumb">

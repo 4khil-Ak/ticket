@@ -1,8 +1,8 @@
 import React from "react";
-import EventsOwl from "./EventsOwl";
+import MoviesOwl from "./MoviesOwl";
 import $ from "jquery";
 
-const EventsSection = (props) => { 
+const MoviesSection = (props) => { 
   const eventData = props.filter
   $(document).ready(function () {
     $("#option1 li").click(function () {
@@ -17,8 +17,8 @@ const EventsSection = (props) => {
         <div className="tab">
           <div className="section-header-2">
             <div className="left">
-              <h2 className="title">Events</h2>
-              <p className="m-0">Be sure not to miss these Events today.</p>
+              <h2 className="title">Movies</h2>
+              <p className="m-0">Be sure not to miss these Movies today.</p>
             </div>
             <ul className="tab-menu" id="option1">
               <li className="active">now showing</li>
@@ -27,10 +27,10 @@ const EventsSection = (props) => {
             </ul>
           </div>
         </div>
-        <EventsOwl filter={eventData}/>
+        <MoviesOwl filter={eventData}/>
       </div>
     </section>
   );
 };
 
-export default EventsSection;
+export default MoviesSection;
