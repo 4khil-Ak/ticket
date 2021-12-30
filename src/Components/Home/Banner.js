@@ -9,11 +9,12 @@ const Banner = () => {
           <h1 className="title  cd-headline clip">
             <span className="d-block">book your</span> tickets for&nbsp;
             <span
-              className="color-theme cd-words-wrapper p-0 m-0"
-              // style={{ width: "269.351px", overflow: "hidden" }}
+              className="text-affect p-0 m-0"
             >
-              <b className="is-visible">Movie</b>
-              <b className="is-hidden">Event</b>
+              <div className="message">
+                <b className="is-visible d-block">Movie</b>
+                <b className="is-visible d-block">Event</b>
+              </div>
             </span>
           </h1>
           {/* <h1 class="main-heading-title"><span class="main-element themecolor" data-elements=" Reservation, Reservation, Reservation"></span></h1> */}

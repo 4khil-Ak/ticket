@@ -55,9 +55,19 @@ input[type=number] {
   bottom: 0;
   right: 0;
   left: 0;
-  background: rgba(0, 0, 0, 0.8);
-  z-index: 4;
-  display: none;
+  background: rgba(0, 0, 0, 0.6);
+  z-index: 999;
+}
+
+.spinner {
+  position: fixed;
+  margin: auto;
+  left: 0;
+  right: 0;
+  top: 40vh;
+  width: fit-content;
+  transform: scale(0.5);
+  z-index: 1000;
 }
 
 body::-webkit-scrollbar {
@@ -492,6 +502,110 @@ img {
   margin-bottom: 18px;
   font-weight: 800;
 }
+
+/* ------------ */
+
+.text-affect {
+  position: relative;
+  display: inline-flex;
+  width: 115px;
+  height: 27px;
+  overflow: hidden;
+}
+
+.message {
+  position: absolute;
+  color: #31d7a9;
+  display: block;
+  font-weight: 900;
+  overflow: hidden;
+  padding-left: 0.5rem;
+  top: 0;
+  left: 0;
+  animation: openclose 5s ease-in-out infinite;
+}
+
+@keyframes openclose {
+  0% {
+    top: 0;
+    width: 0;
+  }
+
+  40% {
+    top: 0;
+    width: 115px;
+  }
+
+  45% {
+    top: 0;
+    width: 0;
+  }
+
+  50% {
+    top: -2.094rem;
+    width: 0;
+  }
+
+  90% {
+    top: -2.094rem;
+    width: 115px;
+  }
+
+  95% {
+    top: -2.094rem;
+    width: 0;
+  }
+
+  100% {
+    top: 0;
+    width: 0;
+  }
+}
+
+@media only screen and (min-width:577px) {
+  .text-affect {
+    width: 300px;
+    height: 88px;
+  }
+  @keyframes openclose {
+    0% {
+      top: 1rem;
+      width: 0;
+    }
+
+    40% {
+      top: 1rem;
+      width: 286px;
+    }
+
+    45% {
+      top: 1rem;
+      width: 0;
+    }
+
+    50% {
+      top: -4.5rem;
+      width: 0;
+    }
+
+    90% {
+      top: -4.5rem;
+      width: 286px;
+    }
+
+    95% {
+      top: -4.5rem;
+      width: 0;
+    }
+
+    100% {
+      top: 1rem;
+      width: 0;
+    }
+  }
+}
+
+/* --------- */
 
 .cd-words-wrapper {
   display: inline-block;
@@ -960,6 +1074,7 @@ img {
     padding-bottom: 120px;
   }
 }
+
 @media only screen and (max-width: 350px) {
   .card .movie-content .title {
     font-size: 16px;
@@ -1654,6 +1769,7 @@ img {
   height: fit-content;
   margin: auto;
 }
+
 .speaker-section .owl-theme .owl-nav .owl-next {
   left: initial;
   right: 0;

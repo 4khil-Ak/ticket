@@ -1,25 +1,23 @@
 import React, { useState, useEffect } from "react";
 import "../Css/User.css";
+import Axios from "axios";
 import Banner from "../Components/Events/Banner";
 import Search from "../Components/Events/Search";
 import Browse from "../Components/Events/Browse";
-import { Ripple } from "react-preloaders";
 
 const Events = () => {
   let url = "https://apidev.ticketezy.com/events_list";
   const [events, setEvents] = useState([]);
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
   const [filter, setFilter] = useState([]);
 
   useEffect(() => {
-    setLoading(true);
     Axios.get(url, {
       headers: {
         'Accept': 'application/json',
         'Content-Type': 'application/json',
       }
     }).then(res => {
-      setLoading(false)
       setEvents(res.data);
     })
   }, [])
@@ -43,7 +41,6 @@ const Events = () => {
       {filter.length >= 1 && (
         <Browse handlefilters={handlefilters} filter={filter} handleclear={handleclear} />
       )}
-      <Ripple customLoading={loading} time={3000} />
     </>
   );
 };
