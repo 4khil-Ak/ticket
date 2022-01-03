@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, useParams } from "react-router-dom";
 import Banner from "../Components/EventSingle/Banner";
 import Details from "../Components/EventSingle/Details";
 import AboutEvent from "../Components/EventSingle/AboutEvent";
@@ -7,12 +7,9 @@ import Gallery from "../Components/EventSingle/Gallery";
 import Organizer from "../Components/EventSingle/Organizer";
 
 const SingleMovie = (props) => {
+    let params = useParams();
     const [singleEventDetails, setSingleEventDetails] = useState(null);
-    const location = useLocation();
-    useEffect(() => {
-        const list = location.state.data;
-        setSingleEventDetails(list);
-    }, [])
+    console.log(params.id,"success");
     let ui = null;
     if (singleEventDetails !== null) {
         ui = (<>

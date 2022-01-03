@@ -5,7 +5,7 @@ import MoviesSection from "../Components/Home/MoviesSection";
 import EventsSection from "../Components/Home/EventsSection";
 
 const Dashboard = () => {
-    let eventData = [{title:1}]
+    let eventData = [{ title: 1, id: 1 }, { title: 2, id: 2 },{ title: 3, id: 3 }, { title: 4, id: 4 }]
     return (
         <>
             <Banner />

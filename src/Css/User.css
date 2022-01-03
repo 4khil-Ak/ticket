@@ -955,7 +955,7 @@ img {
   cursor: pointer;
 }
 
-/* .card .stretched-link {
+.card .stretched-link {
   position: absolute;
   top: 0;
   bottom: 0;
@@ -965,7 +965,7 @@ img {
   height: 100%;
   z-index: 1;
   cursor: pointer;
-} */
+}
 
 .movie-section .card .event-date {
   display: none;

@@ -1,17 +1,11 @@
 import React from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link , useNavigate } from "react-router-dom";
 
 const Card = (props) => {
-    let navigate = useNavigate();
-    const moviesUpdate = (data) => {
-        navigate(
-            "/moviedetails", {state : {data}}
-        );
-    };
-
+    
     return (
         <div className="card">
-            <div onClick={() => moviesUpdate(props.data)} className="stretched-link"></div>
+            <Link className="stretched-link" to={`/moviedetails/${props.data.secret}`} key={props.data.secret}></Link>
             <div className="event-date">
                 <h6>24</h6>
                 <p>Dec</p>

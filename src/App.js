@@ -17,9 +17,13 @@ export default function App() {
         <Route path="/signup" element={<Signup />}></Route>
         <Route path="/" element={<Home />}>
           <Route path="about" element={<About />}></Route>
-          <Route path="eventdetails" element={<SingleEvent />}></Route>
+          <Route path="eventdetails">
+            <Route index path=":id" element={<SingleEvent />}></Route>
+          </Route>
           <Route path="events" element={<Events />}></Route>
-          <Route path="moviedetails" element={<SingleMovie />}></Route>
+          <Route path="moviedetails">
+            <Route path=":id" element={<SingleMovie />}></Route>
+          </Route>
           <Route path="movies" element={<Movies />}></Route>
           <Route index element={<Dashboard />}></Route>
         </Route>
