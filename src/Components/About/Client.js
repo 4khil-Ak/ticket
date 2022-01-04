@@ -15,57 +15,57 @@ const options = {
 
 const Client = () => {
     return (
-        <section class="client-section padding-bottom padding-top bg_img">
-            <div class="container">
-                <div class="about-content">
-                    <span class="cate">testimonials</span>
-                    <h2 class="title">the fans have spoken</h2>
+        <section className="client-section padding-bottom padding-top bg_img">
+            <div className="container">
+                <div className="about-content">
+                    <span className="cate">testimonials</span>
+                    <h2 className="title">the fans have spoken</h2>
                 </div>
                 <OwlCarousel className="owl-theme owl-carousel" {...options}>
-                    <div class="client-item">
-                        <div class="client-thumb">
+                    <div className="client-item">
+                        <div className="client-thumb">
                             <img src="/images/client01.jpg" alt="client" />
                         </div>
-                        <div class="client-content">
-                            <h5 class="title">Shahidul</h5>
-                            <span class="info"><i class="fas fa-check"></i> Verified</span>
-                            <blockquote class="client-quote">
+                        <div className="client-content">
+                            <h5 className="title">Shahidul</h5>
+                            <span className="info"><i className="fas fa-check"></i> Verified</span>
+                            <blockquote className="client-quote">
                                 "Quia voluptatum animi libero recusandae error."
                             </blockquote>
                         </div>
                     </div>
-                    <div class="client-item">
-                        <div class="client-thumb">
+                    <div className="client-item">
+                        <div className="client-thumb">
                             <img src="/images/client02.jpg" alt="client" />
                         </div>
-                        <div class="client-content">
-                            <h5 class="title">Shahidul</h5>
-                            <span class="info"><i class="fas fa-check"></i> Verified</span>
-                            <blockquote class="client-quote">
+                        <div className="client-content">
+                            <h5 className="title">Shahidul</h5>
+                            <span className="info"><i className="fas fa-check"></i> Verified</span>
+                            <blockquote className="client-quote">
                                 "Quia voluptatum animi libero recusandae error."
                             </blockquote>
                         </div>
                     </div>
-                    <div class="client-item">
-                        <div class="client-thumb">
+                    <div className="client-item">
+                        <div className="client-thumb">
                             <img src="/images/client03.jpg" alt="client" />
                         </div>
-                        <div class="client-content">
-                            <h5 class="title">Shahidul</h5>
-                            <span class="info"><i class="fas fa-check"></i> Verified</span>
-                            <blockquote class="client-quote">
+                        <div className="client-content">
+                            <h5 className="title">Shahidul</h5>
+                            <span className="info"><i className="fas fa-check"></i> Verified</span>
+                            <blockquote className="client-quote">
                                 "Quia voluptatum animi libero recusandae error."
                             </blockquote>
                         </div>
                     </div>
-                    <div class="client-item">
-                        <div class="client-thumb">
+                    <div className="client-item">
+                        <div className="client-thumb">
                             <img src="/images/client01.jpg" alt="client" />
                         </div>
-                        <div class="client-content">
-                            <h5 class="title">Shahidul</h5>
-                            <span class="info"><i class="fas fa-check"></i> Verified</span>
-                            <blockquote class="client-quote">
+                        <div className="client-content">
+                            <h5 className="title">Shahidul</h5>
+                            <span className="info"><i className="fas fa-check"></i> Verified</span>
+                            <blockquote className="client-quote">
                                 "Quia voluptatum animi libero recusandae error."
                             </blockquote>
                         </div>

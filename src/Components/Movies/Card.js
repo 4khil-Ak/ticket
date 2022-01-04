@@ -1,15 +1,10 @@
 import React from "react";
-import { Link , useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const Card = (props) => {
-    
     return (
         <div className="card">
             <Link className="stretched-link" to={`/moviedetails/${props.data.secret}`} key={props.data.secret}></Link>
-            <div className="event-date">
-                <h6>24</h6>
-                <p>Dec</p>
-            </div>
             <div className="movie-image">
                 <img
                     className="img-fluid"

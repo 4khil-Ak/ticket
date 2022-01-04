@@ -1,13 +1,7 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
+import { useParams } from "react-router-dom";
 
 const MoviesCard = (props) => {
-    let navigate = useNavigate();
-    const moviesUpdate = (data) => {
-        navigate(
-            "/moviedetails", { state: { data } }
-        );
-    };
     return (
         <>
             {props.eventsList !== null && props.eventsList.map((data) => {

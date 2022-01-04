@@ -1,7 +1,9 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import OwlCarousel from "react-owl-carousel";
 import "owl.carousel/dist/assets/owl.carousel.css";
 import MoviesCard from "../../Reusable/MoviesCard";
+import Loader from "../../Ui/Loader";
+import Axios from "axios";
 
 const options = {
   loop: true,
@@ -27,13 +29,43 @@ const options = {
   }
 };
 
-const MoviesOwl = (props) => {
-  let arr = props.filter;
-  return (
+const MoviesOwl = () => {
+  const url = "https://apidev.ticketezy.com/movies";
+  const [movies, setMovies] = useState([]);
+  const [loading, setLoading] = useState(true);
 
-    <OwlCarousel className="owl-theme owl-carousel" {...options}>
-      <MoviesCard eventsList={arr} />
-    </OwlCarousel>
+  useEffect(() => {
+    Axios.get(url, {
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+      }
+    }).then(res => {
+      setLoading(false);
+      setMovies(res.data);
+    }).catch((error) => {
+      setLoading(false);
+    })
+  }, [])
+  let ui = null;
+  if (movies === null) {
+    ui = <>Loading...</>
+  } else {
+    ui = <>
+      {movies !== null && movies.map((data) => {
+        return (
+          <MoviesCard eventsList={data} key={data.secret} />
+        )
+      })}
+    </>
+  }
+  return (
+    <>
+      <OwlCarousel className="owl-theme owl-carousel" {...options}>
+        {ui}
+      </OwlCarousel>
+      {loading && <Loader />}
+    </>
   );
 };
 

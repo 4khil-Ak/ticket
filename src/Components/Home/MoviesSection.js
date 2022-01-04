@@ -2,8 +2,7 @@ import React from "react";
 import MoviesOwl from "./MoviesOwl";
 import $ from "jquery";
 
-const MoviesSection = (props) => { 
-  const eventData = props.filter
+const MoviesSection = (props) => {
   $(document).ready(function () {
     $("#option1 li").click(function () {
       $("#option1 li.active").removeClass("active");
@@ -27,7 +26,7 @@ const MoviesSection = (props) => {
             </ul>
           </div>
         </div>
-        <MoviesOwl filter={eventData}/>
+        <MoviesOwl />
       </div>
     </section>
   );
