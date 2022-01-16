@@ -8,7 +8,6 @@ import Browse from "../Components/Events/Browse";
 const Events = () => {
   let url = "https://apidev.ticketezy.com/events_list";
   const [events, setEvents] = useState([]);
-  const [loading, setLoading] = useState(true);
   const [filter, setFilter] = useState([]);
 
   useEffect(() => {
@@ -21,14 +20,20 @@ const Events = () => {
       setEvents(res.data);
     })
   }, [])
-
+  // const events = JSON.parse(JSON.stringify(tempEvents));
   const handlefilters = (post) => {
     const ret = events.filter((x) =>
-      post.some((y) => y.Language === x.language || y.category === x.categories || y.start === 'low' && (x.price <= 500 && x.price >= 0) || y.start === 'free' && (x.price === 'free') || y.start === 'medium' && (x.price <= 2000 && x.price >= 500) || y.start === 'high' && (x.price >= 2000))
+      post.some((y) => y.id === x.language || y.id === x.categories || y.start === 'low' && (x.price <= 500 && x.price >= 0) || y.start === 'free' && (x.price === 'free') || y.start === 'medium' && (x.price <= 2000 && x.price >= 500) || y.start === 'high' && (x.price >= 2000))
     );
-    setFilter(ret);
+    if(ret.length === 0) {
+      alert("No data matched your results")
+      setFilter([]);
+    } else {
+      setFilter(ret);
+    } 
   };
   const handleclear = () => {
+    console.log("cleared");
     setFilter([]);
   }
   return (

@@ -2,8 +2,7 @@ import React, { useState, useEffect } from "react";
 import OwlCarousel from "react-owl-carousel";
 import "owl.carousel/dist/assets/owl.carousel.css";
 import EventsCard from "../../Reusable/EventsCard";
-import Loader from "../../Ui/Loader";
-import Axios from "axios";
+
 
 const options = {
   loop: true,
@@ -29,40 +28,17 @@ const options = {
   }
 };
 
-const EventsOwl = () => {
-  const url = "https://apidev.ticketezy.com/events_list";
-  const [events, setEvents] = useState(null);
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    Axios.get(url, {
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json',
-      }
-    }).then(res => {
-      setLoading(false)
-      setEvents(res.data);
-    })
-  }, [])
-  let ui = null;
-  if (events === null) {
-    ui = <>Loading...</>
-  } else {
-    ui = <>
-      {events !== null && events.map((data) => {
-        return (
-          <EventsCard eventsList={data} key={data.secret} />
-        )
-      })}
-    </>
-  }
+const EventsOwl = (props) => {
   return (
     <>
       <OwlCarousel className="owl-theme owl-carousel" {...options}>
-        {ui}
+        {props.data !== null && props.data.map((data) => {
+          return (
+            <EventsCard eventsList={data} key={data.secret} />
+          )
+        })}
       </OwlCarousel>
-      {loading && <Loader />}
+      
     </>
   );
 };

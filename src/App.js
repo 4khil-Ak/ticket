@@ -8,25 +8,27 @@ import About from "./Pages/About";
 import Signup from "./Pages/Signup";
 import Login from "./Pages/Login";
 import SingleMovie from "./Pages/SingleMovie";
+import PageNotFound from "./Ui/PageNotFound";
 
 export default function App() {
   return (
     <div className="App">
       <Routes>
-        <Route path="/login" element={<Login />}></Route>
-        <Route path="/signup" element={<Signup />}></Route>
-        <Route path="/" element={<Home />}>
-          <Route path="about" element={<About />}></Route>
-          <Route path="eventdetails">
-            <Route index path=":id" element={<SingleEvent />}></Route>
+        <Route exact path="/login" element={<Login />}></Route>
+        <Route exact path="/signup" element={<Signup />}></Route>
+        <Route exact path="/" element={<Home />}>
+          <Route exact path="about" element={<About />}></Route>
+          <Route exact path="eventdetails">
+            <Route exact index path=":id" element={<SingleEvent />}></Route>
           </Route>
-          <Route path="events" element={<Events />}></Route>
-          <Route path="moviedetails">
-            <Route path=":id" element={<SingleMovie />}></Route>
+          <Route exact path="events" element={<Events />}></Route>
+          <Route exact path="moviedetails">
+            <Route exact path=":id" element={<SingleMovie />}></Route>
           </Route>
-          <Route path="movies" element={<Movies />}></Route>
-          <Route index element={<Dashboard />}></Route>
+          <Route exact path="movies" element={<Movies />}></Route>
+          <Route exact index element={<Dashboard />}></Route>
         </Route>
+        <Route path="*" element={<PageNotFound/>}></Route>
       </Routes>
     </div>
   );

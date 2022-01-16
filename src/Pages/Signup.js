@@ -3,11 +3,13 @@ import Axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 import { Alert } from "react-bootstrap";
 import "../Css/Login.css";
+import Loader from  "../Ui/Loader";
 
 const Signup = (props) => {
   const url = "https://apidev.ticketezy.com/users";
   let navigate = useNavigate();
   const [error, setError] = useState();
+  const [loading,setLoading] = useState(false);
   const [userDetails, setUserDetails] = useState({
     fname: "",
     lname: "",
@@ -46,31 +48,37 @@ const Signup = (props) => {
     } else if (userDetails.password !== userDetails.confirm) {
       setError("Passwords mismatch")
     } else {
-    Axios.post(url, {
-      "user": {
-        "first_name": userDetails.fname,
-        "last_name": userDetails.lname,
-        "email": userDetails.email,
-        "mobile": userDetails.number,
-        "password": userDetails.password,
-        "identity": "female"
-      }}, {
+      setLoading(true);
+      Axios.post(url, {
+        "user": {
+          "first_name": userDetails.fname,
+          "last_name": userDetails.lname,
+          "email": userDetails.email,
+          "mobile": userDetails.number,
+          "password": userDetails.password,
+          "identity": "female"
+        }
+      }, {
         headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json',
-      }
-    }).then(res => {
-      navigate("/login")
-      console.log("success")
-    }).catch(axioserror=> {
-      if(axioserror.response.data.errors.email !== null && axioserror.response.data.errors.email) {
-        setError(axioserror.response.data.errors.email) 
-      } else if (axioserror.response.data.errors.mobile !== null && axioserror.response.data.errors.mobile) {
-        setError(axioserror.response.data.errors.mobile)
-      } else if (axioserror.response.data.errors.password !== null && axioserror.response.data.errors.password) {
-        setError(axioserror.response.data.errors.password)
-      }
-    })
+          'Accept': 'application/json',
+          'Content-Type': 'application/json',
+        }
+      }).then((res) => {
+        setLoading(false);
+        navigate("/login")
+        setError(res.errors)
+      }).catch((axioserror) => {
+        setLoading(false);
+        if(axioserror.response.data.errors.email !== null && axioserror.response.data.errors.email) {
+          setError(axioserror.response.data.errors.email) 
+        } else if (axioserror.response.data.errors.mobile !== null && axioserror.response.data.errors.mobile) {
+          setError(axioserror.response.data.errors.mobile)
+        } else if (axioserror.response.data.errors.password !== null && axioserror.response.data.errors.password) {
+          setError(axioserror.response.data.errors.password)
+        } else {
+          setError("Network Error!. Try again later")
+        }
+      })
     }
   }
 
@@ -192,6 +200,7 @@ const Signup = (props) => {
           </div>
         </div>
       </div>
+      {loading && <Loader/>}
     </section>
   );
 };

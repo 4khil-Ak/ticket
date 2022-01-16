@@ -1,8 +1,24 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import EventsOwl from "./EventsOwl";
 import $ from "jquery";
+import Loader from "../../Ui/Loader";
+import Axios from "axios";
 
 const EventsSection = (props) => {
+  const url = "https://apidev.ticketezy.com/events_list";
+  const [events, setEvents] = useState(null);
+  const [loading, setLoading] = useState(true);
+  useEffect(() => {
+    Axios.get(url, {
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+      }
+    }).then(res => {
+      setLoading(false)
+      setEvents(res.data);
+    })
+  }, [])
   $(document).ready(function () {
     $("#option1 li").click(function () {
       $("#option1 li.active").removeClass("active");
@@ -26,8 +42,9 @@ const EventsSection = (props) => {
             </ul>
           </div>
         </div>
-        <EventsOwl />
+        {events && <EventsOwl data={events} />}
       </div>
+      {loading && <Loader />}
     </section>
   );
 };

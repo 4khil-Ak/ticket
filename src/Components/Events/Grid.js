@@ -2,12 +2,6 @@ import React, { useEffect, useState } from "react";
 import Card from "./Card";
 
 const Grid = (props) => {
-  const [events, setEvents] = useState(null);
-  useEffect(() => {
-    let list = [];
-    list.push(...props.eventsList);
-    setEvents(list);
-  }, []);
   return (
     <div className="row">
       {props.eventsList!== null && props.eventsList.map((data) => {

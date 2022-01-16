@@ -3,10 +3,12 @@ import Axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 import "../Css/Login.css";
 import { Alert } from "react-bootstrap";
+import Loader from "../Ui/Loader";
 
 const Login = () => {
   let navigate = useNavigate();
   const url = "https://apidev.ticketezy.com/users/login";
+  const [loading, setLoading] = useState(false);
   const [error, setError] = useState();
   const [userDetails, setUserDetails] = useState({
     email: "",
@@ -34,6 +36,7 @@ const Login = () => {
     } else if (atPos > dotPos || nextAtPos !== -1 || nextDotPos !== -1) {
       setError("Enter valid email !")
     } else {
+      setLoading(true)
       Axios.post(url, {
         "email": userDetails.email,
         "password": userDetails.password,
@@ -42,12 +45,15 @@ const Login = () => {
           'Accept': 'application/json',
           'Content-Type': 'application/json',
         }
-      }).then(res => {
+      }).then((res) => {
+        setLoading(false)
         console.log(res);
         let email = userDetails.email;
         navigate("/")
         localStorage.setItem("userId", email);
-      }).catch(axioserror => {
+      }).catch((error) => {
+        setLoading(false)
+        setError("Invalid UserName or Password")
       })
     }
   }
@@ -106,6 +112,7 @@ const Login = () => {
           </div>
         </div>
       </div>
+      {loading && <Loader/>}
     </section>
   );
 };

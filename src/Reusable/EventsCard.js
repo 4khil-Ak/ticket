@@ -1,16 +1,14 @@
 import React from "react";
 import { Link } from "react-router-dom";
 const EventsCard = (props) => {
-  console.log(props.eventsList, "final");
-  let ui = null
   return (
     <>
       <div className="card">
         <Link className="stretched-link" to={`/eventdetails/${props.eventsList.secret}`} key={props.eventsList.secret}></Link>
-        <div className="event-date">
+        {/* <div className="event-date">
           <h6>24</h6>
           <p>Dec</p>
-        </div>
+        </div> */}
         <div className="movie-image">
           <img
             className="img-fluid"

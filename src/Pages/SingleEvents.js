@@ -7,11 +7,14 @@ import Gallery from "../Components/EventSingle/Gallery";
 import Organizer from "../Components/EventSingle/Organizer";
 import Axios from "axios";
 import Loader from "../Ui/Loader";
+import TicketCount from "../Ui/TicketsCount";
 
 const SingleEvent = (props) => {
     let params = useParams();
     let url = `https://apidev.ticketezy.com/events_list`;
     const [singleEventDetails, setSingleEventDetails] = useState(null);
+    const [ticketData, setTicketData] = useState(null);
+    const [show, setShow] = useState(false);
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
@@ -25,6 +28,15 @@ const SingleEvent = (props) => {
             setSingleEventDetails(res.data);
         })
     }, [])
+    const bookMyTicket = (data) => {
+        setShow(true);
+        setTicketData({
+            seats_available: 40,
+            total_seats: 50,
+            price: 120,
+            eventId: data
+        })
+    }
     let ui = null;
     if (singleEventDetails === null) {
         ui = <>
@@ -35,7 +47,7 @@ const SingleEvent = (props) => {
             return (
                 <div key={data.secret}>
                     <Banner />
-                    <Details details={data} />
+                    <Details details={data} book= {() => bookMyTicket(data)} />
                     <AboutEvent details={data} />
                     <Gallery details={data} />
                     <Organizer details={data} />
@@ -47,7 +59,10 @@ const SingleEvent = (props) => {
         }
     }
     return (
-        ui
+        <>
+            {ui}
+            {show && <TicketCount data={ticketData} closeHandler={closeHandler} />}
+        </>
     )
 }
 
