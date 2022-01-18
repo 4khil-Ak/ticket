@@ -695,6 +695,7 @@ img {
     width: 300px;
     height: 88px;
   }
+
   @keyframes openclose {
     0% {
       top: 1rem;
@@ -1805,6 +1806,20 @@ img {
   margin-bottom: 30px;
 }
 
+.book-btn {
+  background-image: linear-gradient(to right, #ffc107, #ffc107);
+  letter-spacing: 1px;
+}
+
+.details div.icon i {
+  font-size: 3rem;
+}
+
+.details p.venue {
+  font-size: 1.25rem;
+  text-transform: capitalize;
+}
+
 .event-about-thumb {
   position: relative;
   padding-right: 34px;
@@ -1987,6 +2002,15 @@ img {
 
   .details .right .countdown {
     margin-left: -10px;
+  }
+
+  .details div.icon {
+    width: 15%;
+    text-align: center;
+  }
+
+  .details div.icon i {
+    font-size: 1.5rem;
   }
 }
 

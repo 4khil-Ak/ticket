@@ -11,11 +11,18 @@ import TicketCount from "../Ui/TicketsCount";
 
 const SingleEvent = (props) => {
     let params = useParams();
-    let url = `https://apidev.ticketezy.com/events_list`;
+    let url = `https://apidev.ticketezy.com/event_details/${params.id}`;
     const [singleEventDetails, setSingleEventDetails] = useState(null);
     const [ticketData, setTicketData] = useState(null);
     const [show, setShow] = useState(false);
     const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
+    const [cat, setCat] = useState({
+        price: "150"
+    });
+    const [count, setCount] = useState({
+        count: "1",
+    });
 
     useEffect(() => {
         Axios.get(url, {
@@ -28,40 +35,50 @@ const SingleEvent = (props) => {
             setSingleEventDetails(res.data);
         })
     }, [])
-    const bookMyTicket = (data) => {
-        setShow(true);
-        setTicketData({
-            seats_available: 40,
-            total_seats: 50,
-            price: 120,
-            eventId: data
-        })
-    }
-    let ui = null;
-    if (singleEventDetails === null) {
-        ui = <>
-            {loading && <Loader />}
-        </>
-    } else {
-        ui = singleEventDetails.filter(x => x.secret === params.id).map((data) => {
-            return (
-                <div key={data.secret}>
-                    <Banner />
-                    <Details details={data} book= {() => bookMyTicket(data)} />
-                    <AboutEvent details={data} />
-                    <Gallery details={data} />
-                    <Organizer details={data} />
-                </div>
-            )
-        })
-        if (singleEventDetails !== null) {
 
-        }
+    const onChangeHandler = (event) => {
+        let val = event.target.value;
+        setCount((prevState) => {
+            return {
+                ...prevState,
+                [event.target.id]: val
+            }
+        })
     }
+
+    const catChangeHandler = (event) => {
+        let val = event.target.value;
+        setCat((prevState) => {
+            return {
+                ...prevState,
+                [event.target.name]: val
+            }
+        })
+    }
+    const bookMyTicket = () => {
+        if (count.count === "") {
+            setError("Enter valid count")
+        } else if (count.count >= props.data.seats_available) {
+            setError("Seats not available")
+        } else {
+        }
+        setShow(false);
+    }
+    const closeHandler = () => {
+        setShow(false);
+    }
+    let ui = <div>
+        <Banner details={singleEventDetails} />
+        <Details details={singleEventDetails} book={() => bookMyTicket(data)} />
+        <AboutEvent details={singleEventDetails} />
+        <Gallery details={singleEventDetails} />
+        <Organizer details={singleEventDetails} />
+    </div>
     return (
         <>
-            {ui}
-            {show && <TicketCount data={ticketData} closeHandler={closeHandler} />}
+            {singleEventDetails && ui}
+            {show && <TicketCount data={ticketData} closeHandler={closeHandler} onChangeHandler={onChangeHandler} catChangeHandler={catChangeHandler} bookMyTicket={bookMyTicket} error={error} count={count} />}
+            {loading && <Loader />}
         </>
     )
 }
