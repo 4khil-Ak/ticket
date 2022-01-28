@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import Banner from "../Components/EventSingle/Banner";
 import Details from "../Components/EventSingle/Details";
 import AboutEvent from "../Components/EventSingle/AboutEvent";
@@ -10,77 +10,112 @@ import Loader from "../Ui/Loader";
 import TicketCount from "../Ui/TicketsCount";
 
 const SingleEvent = (props) => {
-    let params = useParams();
-    let url = `https://apidev.ticketezy.com/event_details/${params.id}`;
-    const [singleEventDetails, setSingleEventDetails] = useState(null);
-    const [ticketData, setTicketData] = useState(null);
-    const [show, setShow] = useState(false);
-    const [loading, setLoading] = useState(true);
-    const [error, setError] = useState(null);
-    const [cat, setCat] = useState({
-        price: "150"
+  let params = useParams();
+  let navigate = useNavigate();
+  let url = `https://apidev.ticketezy.com/event_details/${params.id}`;
+  const [singleEventDetails, setSingleEventDetails] = useState(null);
+  const [countDown, setCountDown] = useState([]);
+  const [show, setShow] = useState(false);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+  const [ticketData, setTicketData] = useState({
+    title: "",
+    count: "1",
+    category: "",
+    price: "",
+    date: "",
+    time: "",
+  });
+  useEffect(() => {
+    Axios.get(url, {
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+    }).then((res) => {
+      setSingleEventDetails(res.data);
+      setCountDown(res.data["schedule_details"].schedules[0].times[0]);
+      setLoading(false);
     });
-    const [count, setCount] = useState({
-        count: "1",
+  }, []);
+
+  const onChangeHandler = (event) => {
+    let val = event.target.value;
+    setTicketData((prevState) => {
+      return {
+        ...prevState,
+        [event.target.name]: val,
+      };
     });
+  };
 
-    useEffect(() => {
-        Axios.get(url, {
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json',
-            }
-        }).then(res => {
-            setLoading(false);
-            setSingleEventDetails(res.data);
-        })
-    }, [])
+  const confirmTickets = () => {
+    ticketData.title = singleEventDetails.event_details.title;
+    ticketData.price =
+      singleEventDetails.seat_details.price_card[ticketData.category];
+    for (var i = 0; i < singleEventDetails.schedule_details.schedules.length; i++) {
+      if(singleEventDetails.schedule_details.schedules[i].times.includes(ticketData.time) == true){
+        ticketData.date = singleEventDetails.schedule_details.schedules[i].date
+      }
+    }
+    if (ticketData.count === "") {
+      setError("Ticket count cannot be zero");
+    } else if (ticketData.category === "" || ticketData.price === "") {
+      setError("Pick a category");
+    } else if (
+      ticketData.count >
+      singleEventDetails.seat_details.seats[ticketData.category].available_seats
+    ) {
+      setError("Tickets is not available");
+    } else if (ticketData.date === "") {
+      setError("Pick a show Time");
+    } else if (ticketData.time === "") {
+      setError("Pick a show Time");
+    } else {
+      // navigate(`eventdetails/${singleEventDetails["event_details"].secret}`);
+      navigate(`summary`, {state: ticketData})
+    }
+  };
 
-    const onChangeHandler = (event) => {
-        let val = event.target.value;
-        setCount((prevState) => {
-            return {
-                ...prevState,
-                [event.target.id]: val
-            }
-        })
-    }
-
-    const catChangeHandler = (event) => {
-        let val = event.target.value;
-        setCat((prevState) => {
-            return {
-                ...prevState,
-                [event.target.name]: val
-            }
-        })
-    }
-    const bookMyTicket = () => {
-        if (count.count === "") {
-            setError("Enter valid count")
-        } else if (count.count >= props.data.seats_available) {
-            setError("Seats not available")
-        } else {
-        }
-        setShow(false);
-    }
-    const closeHandler = () => {
-        setShow(false);
-    }
-    let ui = <div>
-        <Banner details={singleEventDetails} />
-        <Details details={singleEventDetails} book={() => bookMyTicket(data)} />
-        <AboutEvent details={singleEventDetails} />
-        <Gallery details={singleEventDetails} />
-        <Organizer details={singleEventDetails} />
+  const bookMyTicket = () => {
+    setShow(true);
+  };
+  const closeHandler = () => {
+    setShow(false);
+    setError(null);
+    setTicketData({
+      count: "1",
+      category: "",
+      price: "",
+      date: "",
+      time: "",
+    });
+  };
+  let ui = (
+    <div>
+      <Banner details={singleEventDetails} />
+      <Details details={singleEventDetails} bookMyTicket={bookMyTicket} />
+      <AboutEvent details={singleEventDetails} />
+      <Gallery details={singleEventDetails} />
+      <Organizer details={singleEventDetails} />
     </div>
-    return (
-        <>
-            {singleEventDetails && ui}
-            {show && <TicketCount data={ticketData} closeHandler={closeHandler} onChangeHandler={onChangeHandler} catChangeHandler={catChangeHandler} bookMyTicket={bookMyTicket} error={error} count={count} />}
-            {loading && <Loader />}
-        </>
-    )
-}
+  );
+  return (
+    <>
+      {singleEventDetails && ui}
+      {loading && <Loader />}
+      {show && (
+        <TicketCount
+          closeHandler={closeHandler}
+          ticketData={ticketData}
+          onChangeHandler={onChangeHandler}
+          singleEventDetails={singleEventDetails}
+          confirmTickets={confirmTickets}
+          error={error}
+        />
+      )}
+    </>
+  );
+};
 
 export default SingleEvent;

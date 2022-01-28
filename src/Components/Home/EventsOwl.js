@@ -38,7 +38,6 @@ const EventsOwl = (props) => {
           )
         })}
       </OwlCarousel>
-      
     </>
   );
 };

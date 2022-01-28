@@ -4,7 +4,7 @@ import "owl.carousel/dist/assets/owl.carousel.css";
 import MoviesCard from "../../Reusable/MoviesCard";
 
 const options = {
-  loop: true,
+  // loop: true,
   margin: 30,
   dots: false,
   autoplay: true,

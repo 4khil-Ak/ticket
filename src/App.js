@@ -9,6 +9,7 @@ import Signup from "./Pages/Signup";
 import Login from "./Pages/Login";
 import SingleMovie from "./Pages/SingleMovie";
 import PageNotFound from "./Ui/PageNotFound";
+import Summary from "./Ui/Summary";
 
 export default function App() {
   return (
@@ -19,6 +20,7 @@ export default function App() {
         <Route exact path="/" element={<Home />}>
           <Route exact path="about" element={<About />}></Route>
           <Route exact path="eventdetails">
+            <Route exact index path=":id/summary" element={<Summary />}></Route>
             <Route exact index path=":id" element={<SingleEvent />}></Route>
           </Route>
           <Route exact path="events" element={<Events />}></Route>

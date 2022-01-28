@@ -3,11 +3,7 @@ import TicketCount from "../../Ui/TicketsCount";
 
 const AboutEvent = (props) => {
     const [show, setShow] = useState(false);
-    const [eventDetails, setEventDetails] = useState([]);
     const [ticketData, setTicketData] = useState(null);
-    useEffect(() => {
-        setEventDetails(props.details["event_details"])
-    }, [])
     const bookMyTicket = (details) => {
         setShow(true);
         setTicketData({
@@ -27,9 +23,9 @@ const AboutEvent = (props) => {
                     <div className="col-lg-7 col-xl-6">
                         <div className="about-content m-0">
                             <span className="cate">are you ready to attend?</span>
-                            <h2 className="title">{eventDetails.title}</h2>
-                            <p>{eventDetails.description}</p>
-                            <button type="button" className="custom-button book-btn btn btn-warning">Book TIcket</button>
+                            <h2 className="title">{props.details.title}</h2>
+                            <p>{props.details.description}</p>
+                            <button type="button" className="custom-button book-btn btn btn-warning" onClick={() => bookMyTicket(props.details.secret)}>Book TIcket</button>
                         </div>
                     </div>
                     <div className="col-lg-5 col-md-7">

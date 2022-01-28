@@ -1,6 +1,6 @@
 import React from "react";
 
-const Speaker = () => {
+const Speaker = (props) => {
     return (
         <div className="speaker-item">
             <div className="speaker-thumb">
@@ -8,9 +8,9 @@ const Speaker = () => {
             </div>
             <div className="speaker-content">
                 <h5 className="title">
-                    Grass Hopper
+                    {props.data.name}
                 </h5>
-                <span>lead speaker</span>
+                {/* <span>lead speaker</span> */}
             </div>
         </div>
     )

@@ -7,7 +7,7 @@ import Browse from "../Components/Movies/Browse";
 import Loader from "../Ui/Loader";
 
 const Movies = () => {
-  let url = "https://apidev.ticketezy.com/events_list";
+  let url = "https://apidev.ticketezy.com/movies";
   const [movies, setMovies] = useState([]);
   const [loading, setLoading] = useState(true);
   const [filter, setFilter] = useState([]);
