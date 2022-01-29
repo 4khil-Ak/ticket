@@ -15,51 +15,10 @@ const TicketCount = (props) => {
       .join(" ");
   };
   const toTime = (time) => {
-    var d = new Date(time*1000);
+    var d = new Date(time * 1000);
     var value = d.toLocaleTimeString().replace(/(.*)\D\d+/, "$1");
     return value;
   };
-  let showTime = null;
-  if (props.singleEventDetails.schedule_details.schedules.length > 1 &&  props.singleEventDetails.schedule_details.schedules[0].times.length >1) {
-    showTime = (
-      <>
-        <div className="row">
-          <h5 className="mb-2 w-100 text-white">Pick Show Time</h5>
-          {props.singleEventDetails.schedule_details.schedules.map((value) => {
-            return (
-              <div className="col-12 row p-2 text-left" key={value.date}>
-                <>
-                  <span className="px-3 py-2 text-danger">
-                    {value.date}
-                  </span>
-                  {value.times.map((time) => {
-                    return (
-                      <span className="row px-2 align-items-center" key={time}>
-                        <input
-                          type="radio"
-                          onChange={props.onChangeHandler}
-                          name="time"
-                          id={time}
-                          value={time}
-                          style={{marginTop: "-4px"}}
-                        />
-                        <label
-                          htmlFor={time}
-                          className="pl-2 m-0 text-white"
-                        >
-                          {toTime(time)}
-                        </label>
-                      </span>
-                    );
-                  })}
-                </>
-              </div>
-            );
-          })}
-        </div>
-      </>
-    );
-  }
   return (
     <>
       <div className="backdrop"></div>
@@ -110,7 +69,35 @@ const TicketCount = (props) => {
             );
           })}
         </div>
-        {showTime}
+        <div className="row">
+          <h5 className="mb-2 w-100 text-white">Pick Show Time</h5>
+          {props.singleEventDetails.schedule_details.schedules.map((value) => {
+            return (
+              <div className="col-12 row p-2 text-left" key={value.date}>
+                <>
+                  <span className="px-3 py-2 text-danger">{value.date}</span>
+                  {value.times.map((time) => {
+                    return (
+                      <span className="row px-2 align-items-center" key={time}>
+                        <input
+                          type="radio"
+                          onChange={props.onChangeHandler}
+                          name="time"
+                          id={time}
+                          value={time}
+                          style={{ marginTop: "-4px" }}
+                        />
+                        <label htmlFor={time} className="pl-2 m-0 text-white">
+                          {toTime(time)}
+                        </label>
+                      </span>
+                    );
+                  })}
+                </>
+              </div>
+            );
+          })}
+        </div>
         <br />
         <div className="pb-2 d-md-none">
           {props.error && <Alert variant="danger">{props.error}</Alert>}

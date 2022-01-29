@@ -62,8 +62,8 @@ const SingleEvent = (props) => {
       i < singleEventDetails.schedule_details.schedules.length;
       i++
     ) {
-      if (
-        singleEventDetails.schedule_details.schedules[i].times.includes(
+        if (
+          singleEventDetails.schedule_details.schedules[i].times.includes(
           ticketData.time
         ) == true
       ) {
@@ -84,7 +84,6 @@ const SingleEvent = (props) => {
     } else if (ticketData.time === "") {
       setError("Pick a show Time");
     } else {
-      // navigate(`eventdetails/${singleEventDetails["event_details"].secret}`);
       navigate(`summary`, { state: ticketData });
     }
   };
