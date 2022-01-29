@@ -2082,3 +2082,28 @@ img {
     margin-bottom: 0;
   }
 }
+
+/* summary page */
+
+.summary-header {
+  position: fixed;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100px;
+  width: 100%;
+  top: 0;
+  left: 0;
+  right: 0;
+  background: #001232;
+  z-index: 99999999;
+}
+
+.summary-body {
+  margin-top: 100px;
+  background: #efefef;
+}
+
+.show-details {
+  color: #032055;
+}

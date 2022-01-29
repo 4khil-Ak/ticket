@@ -15,12 +15,12 @@ const TicketCount = (props) => {
       .join(" ");
   };
   const toTime = (time) => {
-    var d = new Date(time);
+    var d = new Date(time*1000);
     var value = d.toLocaleTimeString().replace(/(.*)\D\d+/, "$1");
     return value;
   };
   let showTime = null;
-  if (props.singleEventDetails.schedule_details.schedules.length > 1) {
+  if (props.singleEventDetails.schedule_details.schedules.length > 1 &&  props.singleEventDetails.schedule_details.schedules[0].times.length >1) {
     showTime = (
       <>
         <div className="row">

@@ -20,6 +20,8 @@ const SingleEvent = (props) => {
   const [error, setError] = useState(null);
   const [ticketData, setTicketData] = useState({
     title: "",
+    location: "",
+    venue: "",
     count: "1",
     category: "",
     price: "",
@@ -51,11 +53,21 @@ const SingleEvent = (props) => {
 
   const confirmTickets = () => {
     ticketData.title = singleEventDetails.event_details.title;
+    ticketData.location = singleEventDetails.event_details.location;
+    ticketData.venue = singleEventDetails.event_details.venue;
     ticketData.price =
       singleEventDetails.seat_details.price_card[ticketData.category];
-    for (var i = 0; i < singleEventDetails.schedule_details.schedules.length; i++) {
-      if(singleEventDetails.schedule_details.schedules[i].times.includes(ticketData.time) == true){
-        ticketData.date = singleEventDetails.schedule_details.schedules[i].date
+    for (
+      var i = 0;
+      i < singleEventDetails.schedule_details.schedules.length;
+      i++
+    ) {
+      if (
+        singleEventDetails.schedule_details.schedules[i].times.includes(
+          ticketData.time
+        ) == true
+      ) {
+        ticketData.date = singleEventDetails.schedule_details.schedules[i].date;
       }
     }
     if (ticketData.count === "") {
@@ -73,7 +85,7 @@ const SingleEvent = (props) => {
       setError("Pick a show Time");
     } else {
       // navigate(`eventdetails/${singleEventDetails["event_details"].secret}`);
-      navigate(`summary`, {state: ticketData})
+      navigate(`summary`, { state: ticketData });
     }
   };
 
@@ -95,7 +107,7 @@ const SingleEvent = (props) => {
     <div>
       <Banner details={singleEventDetails} />
       <Details details={singleEventDetails} bookMyTicket={bookMyTicket} />
-      <AboutEvent details={singleEventDetails} />
+      <AboutEvent details={singleEventDetails} bookMyTicket={bookMyTicket}/>
       <Gallery details={singleEventDetails} />
       <Organizer details={singleEventDetails} />
     </div>
