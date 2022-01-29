@@ -23,7 +23,7 @@ const Summary = () => {
   };
   const amountPayable = (price) => {
     var convenience = 20.4;
-    var amount = price + convenience;
+    var amount = parseInt(price) + convenience;
     return amount;
   };
   const proceed = () => {
