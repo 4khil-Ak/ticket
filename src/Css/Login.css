@@ -1,8 +1,8 @@
 .login-sect {
   background-image: url("../Assests/login.jpg");
-    background-size: cover;
-    background-position: center center;
-    background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
 }
 .signup-form {
   width: 100%;
@@ -140,6 +140,25 @@
   color: #31d7a9;
   text-decoration: none;
 }
+.signup-form .css-1pahdxg-control,
+.signup-form .css-1pahdxg-control:hover,
+.signup-form .css-1s2u09g-control {
+  background: transparent;
+  color: #23334f;
+  border-color: rgba(255, 255, 255, 0.7);
+  box-shadow: none;
+}
+
+.signup-form .css-1okebmr-indicatorSeparator {
+  background: transparent;
+}
+.signup-form .css-qc6sy-singleValue {
+  color: #dbe2fb;
+}
+.signup-form .css-26l3qy-menu {
+  background: #23334f;
+}
+
 @media only screen and (min-width: 576px) {
   .signup-form .header {
     margin-bottom: 27px;

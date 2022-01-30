@@ -48,9 +48,9 @@ const Login = () => {
       }).then((res) => {
         setLoading(false)
         console.log(res);
-        let email = userDetails.email;
+        let uniqID = res.data.message.secret;
+        localStorage.setItem("TicketUserId", uniqID);
         navigate("/")
-        localStorage.setItem("userId", email);
       }).catch((error) => {
         setLoading(false)
         setError("Invalid UserName or Password")

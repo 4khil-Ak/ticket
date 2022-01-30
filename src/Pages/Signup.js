@@ -3,31 +3,38 @@ import Axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 import { Alert } from "react-bootstrap";
 import "../Css/Login.css";
-import Loader from  "../Ui/Loader";
+import Select from "react-select";
+import Loader from "../Ui/Loader";
 
 const Signup = (props) => {
   const url = "https://apidev.ticketezy.com/users";
   let navigate = useNavigate();
   const [error, setError] = useState();
-  const [loading,setLoading] = useState(false);
+  const [loading, setLoading] = useState(false);
   const [userDetails, setUserDetails] = useState({
     fname: "",
     lname: "",
     email: "",
     number: "",
     password: "",
-    confirm: ""
+    confirm: "",
+    gender: "",
   });
 
-  const onChangeHandler = (event) => {
-    let val = event.target.value;
-    setUserDetails((prevState) => {
-      return {
-        ...prevState,
-        [event.target.id]: val
-      }
-    })
-  }
+  const GenderOptions = [
+    { value: "male", label: "Male" },
+    { value: "female", label: "Female" },
+  ];
+
+  const onChangeHandler = (event,action) => {
+    const tempInputs = JSON.parse(JSON.stringify(userDetails));
+    if (event.target) {
+      tempInputs[event.target.name] = event.target.value;
+    } else if (action) {
+      tempInputs[action.name] = event.value;
+    }
+    setUserDetails(tempInputs);
+  };
 
   const creatUserHandler = (event) => {
     event.preventDefault();
@@ -35,52 +42,78 @@ const Signup = (props) => {
     let dotPos = userDetails.email.indexOf(".");
     let nextAtPos = userDetails.email.indexOf("@", atPos + 1);
     let nextDotPos = userDetails.email.indexOf(".", dotPos + 1);
-    if (userDetails.fname === "" || userDetails.lname === "" || userDetails.email === "" || userDetails.number === "" || userDetails.password === "" || userDetails.confirm === "") {
+    if (
+      userDetails.fname === "" ||
+      userDetails.lname === "" ||
+      userDetails.email === "" ||
+      userDetails.number === "" ||
+      userDetails.password === "" ||
+      userDetails.confirm === "" ||
+      userDetails.gender
+    ) {
       setError("Enter valid data !");
-    } else if (userDetails.fname.match(/^[a-zA-Z]+$/) === null || userDetails.lname.match(/^[a-zA-Z]+$/) === null) {
-      setError("Name cannot contain special character")
+    } else if (
+      userDetails.fname.match(/^[a-zA-Z]+$/) === null ||
+      userDetails.lname.match(/^[a-zA-Z]+$/) === null
+    ) {
+      setError("Name cannot contain special character");
     } else if (userDetails.fname === userDetails.lname) {
-      setError("First Name and Last Name cannot be the same")
+      setError("First Name and Last Name cannot be the same");
     } else if (atPos > dotPos || nextAtPos !== -1 || nextDotPos !== -1) {
-      setError("Enter valid email !")
+      setError("Enter valid email !");
     } else if (userDetails.number.length !== 10) {
       setError("Enter valid mobile number !");
     } else if (userDetails.password !== userDetails.confirm) {
-      setError("Passwords mismatch")
+      setError("Passwords mismatch");
     } else {
       setLoading(true);
-      Axios.post(url, {
-        "user": {
-          "first_name": userDetails.fname,
-          "last_name": userDetails.lname,
-          "email": userDetails.email,
-          "mobile": userDetails.number,
-          "password": userDetails.password,
-          "identity": "female"
+      Axios.post(
+        url,
+        {
+          user: {
+            first_name: userDetails.fname,
+            last_name: userDetails.lname,
+            email: userDetails.email,
+            mobile: userDetails.number,
+            password: userDetails.password,
+            identity: userDetails.gender,
+          },
+        },
+        {
+          headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json",
+          },
         }
-      }, {
-        headers: {
-          'Accept': 'application/json',
-          'Content-Type': 'application/json',
-        }
-      }).then((res) => {
-        setLoading(false);
-        navigate("/login")
-        setError(res.errors)
-      }).catch((axioserror) => {
-        setLoading(false);
-        if(axioserror.response.data.errors.email !== null && axioserror.response.data.errors.email) {
-          setError(axioserror.response.data.errors.email) 
-        } else if (axioserror.response.data.errors.mobile !== null && axioserror.response.data.errors.mobile) {
-          setError(axioserror.response.data.errors.mobile)
-        } else if (axioserror.response.data.errors.password !== null && axioserror.response.data.errors.password) {
-          setError(axioserror.response.data.errors.password)
-        } else {
-          setError("Network Error!. Try again later")
-        }
-      })
+      )
+        .then((res) => {
+          setLoading(false);
+          navigate("/login");
+          setError(res.errors);
+        })
+        .catch((axioserror) => {
+          setLoading(false);
+          if (
+            axioserror.response.data.errors.email !== null &&
+            axioserror.response.data.errors.email
+          ) {
+            setError(axioserror.response.data.errors.email);
+          } else if (
+            axioserror.response.data.errors.mobile !== null &&
+            axioserror.response.data.errors.mobile
+          ) {
+            setError(axioserror.response.data.errors.mobile);
+          } else if (
+            axioserror.response.data.errors.password !== null &&
+            axioserror.response.data.errors.password
+          ) {
+            setError(axioserror.response.data.errors.password);
+          } else {
+            setError("Network Error!. Try again later");
+          }
+        });
     }
-  }
+  };
 
   return (
     <section className="login-sect">
@@ -91,7 +124,7 @@ const Signup = (props) => {
               <h2>Welcome</h2>
               <p>To TicketEzy</p>
             </div>
-            <form className="account-form" onSubmit={creatUserHandler} >
+            <form className="account-form" onSubmit={creatUserHandler}>
               <div className="row" style={{ margin: "0 -15px" }}>
                 <div className="col-sm-6">
                   <div className="form-group">
@@ -150,6 +183,21 @@ const Signup = (props) => {
                   onChange={onChangeHandler}
                 />
               </div>
+              <div className="form-group">
+                <label htmlFor="gender">
+                  Choose Gender<span>*</span>
+                </label>
+                <Select
+                  options={GenderOptions}
+                  id="gender"
+                  required=""
+                  name="gender"
+                  value={GenderOptions.filter(function (option) {
+                    return option.value === userDetails.gender;
+                  })}
+                  onChange={onChangeHandler}
+                />
+              </div>
               <div className="row" style={{ margin: "0 -15px" }}>
                 <div className="col-sm-6">
                   <div className="form-group">
@@ -200,7 +248,7 @@ const Signup = (props) => {
           </div>
         </div>
       </div>
-      {loading && <Loader/>}
+      {loading && <Loader />}
     </section>
   );
 };
