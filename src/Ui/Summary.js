@@ -1,15 +1,18 @@
-import React from "react";
-import {
-  Navigate,
-  useLocation,
-  useNavigate,
-  useParams,
-} from "react-router-dom";
+import React, { useState } from "react";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
+import TermsAndConditions from "./TermsAndConditions";
 
 const Summary = () => {
   let params = useParams();
   let navigate = useNavigate();
   const { state } = useLocation();
+  const [terms, setTerms] = useState(false);
+  const onShowHandler = () => {
+    setTerms(true);
+  };
+  const onCloseHandler = () => {
+    setTerms(false);
+  };
   const titleCase = (str) => {
     return str
       .split("_")
@@ -59,7 +62,7 @@ const Summary = () => {
         <div className="col-sm-6 col-lg-5 p-2">
           <div className="inner p-2 bg-white">
             <h4 className="float-right text-dark pt-2 pr-2">
-              No: of Tickets :{" "}
+              Tickets Count -{" "}
               <span className="text-danger">{state.count}</span>
             </h4>
             <p className="p-3 text-danger">Booking Summary</p>
@@ -99,6 +102,11 @@ const Summary = () => {
               Your current state is{" "}
               <span className="text-danger">TamilNadu</span>
             </small>
+            <small className="text-danger d-block d-md-inline-block float-md-right px-3" style={{textDecoration: "underline"}} onClick={onShowHandler} role="button">
+              <b>
+              Terms & Conditions
+              </b>
+            </small>
             <div className="px-2">
               <hr />
             </div>
@@ -119,6 +127,7 @@ const Summary = () => {
           </div>
         </div>
       </div>
+      {terms && <TermsAndConditions onCloseHandler={onCloseHandler} />}
     </>
   );
 };
